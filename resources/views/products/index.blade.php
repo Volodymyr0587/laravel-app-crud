@@ -19,6 +19,10 @@
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" <p>{{ session('update-product') }}</p>
         </div>
     @endif
+    @if (session()->has('delete-product'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" <p>{{ session('delete-product') }}</p>
+        </div>
+    @endif
 
 
     <h1>Products</h1>
@@ -31,6 +35,7 @@
                 <th>Price</th>
                 <th>Description</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
             @foreach ($products as $product)
                 <tr>
@@ -41,6 +46,13 @@
                     <td>{{ $product->description }}</td>
                     <td>
                         <a href="{{ route('product.edit', ['product' => $product]) }}">Edit</a>
+                    </td>
+                    <td>
+                        <form method="POST" action="/product/{{ $product->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" onclick="return confirm('Are you sure?')">
+                        </form>
                     </td>
                 </tr>
             @endforeach

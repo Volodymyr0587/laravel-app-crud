@@ -57,4 +57,13 @@ class ProductController extends Controller
 
         return redirect(route('product.index'));
     }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        session()->flash('delete-product', 'Product succssefuly deleted.');
+
+        return redirect(route('product.index'));
+    }
 }
