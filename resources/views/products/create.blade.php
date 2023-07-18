@@ -9,24 +9,36 @@
 <body>
     <h1>Create Product</h1>
 
-    <form method="POST" action="" class="">
+    <form method="POST" action="{{ route('product.store') }}">
         @csrf
-
+        @method('POST')
         <div>
             <label>Name</label>
-            <input type="text" name="name" placeholder="name">
+            <input type="text" name="name" placeholder="name" value="{{ old('name') }}">
+            @if ($errors->has('name'))
+                <p>{{ $errors->first('name') }}</p>
+            @endif
         </div>
         <div>
             <label>Quantity</label>
-            <input type="text" name="quantity" placeholder="quantity">
+            <input type="text" name="qty" placeholder="quantity" value="{{ old('qty') }}">
+            @if ($errors->has('qty'))
+                <p>{{ $errors->first('qty') }}</p>
+            @endif
         </div>
         <div>
             <label>Price</label>
-            <input type="text" name="price" placeholder="price">
+            <input type="text" name="price" placeholder="price" value="{{ old('price') }}">
+            @if ($errors->has('price'))
+                <p>{{ $errors->first('price') }}</p>
+            @endif
         </div>
         <div>
             <label>Description</label>
-            <input type="text" name="description" placeholder="description">
+            <input type="text" name="description" placeholder="description" value="{{ old('description') }}">
+            @if ($errors->has('description'))
+                <p>{{ $errors->first('description') }}</p>
+            @endif
         </div>
         <div>
             <input type="submit" value="Save Product">
