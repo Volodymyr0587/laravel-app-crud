@@ -26,6 +26,10 @@
 
 
     <h1>Products</h1>
+
+    <div style="margin-bottom: 8px">
+        <a href="{{ route('product.create') }}">Add Product</a>
+    </div>
     <div>
         <table border="1">
             <tr>
