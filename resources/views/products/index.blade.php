@@ -15,6 +15,11 @@
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" <p>{{ session('create-product') }}</p>
         </div>
     @endif
+    @if (session()->has('update-product'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show" <p>{{ session('update-product') }}</p>
+        </div>
+    @endif
+
 
     <h1>Products</h1>
     <div>
@@ -25,6 +30,7 @@
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Description</th>
+                <th>Edit</th>
             </tr>
             @foreach ($products as $product)
                 <tr>
@@ -33,6 +39,9 @@
                     <td>{{ $product->qty }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->description }}</td>
+                    <td>
+                        <a href="{{ route('product.edit', ['product' => $product]) }}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </table>
